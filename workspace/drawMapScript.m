@@ -2,22 +2,29 @@ clear all;
 addpath(genpath("../utils/"), genpath("../global_planner/"));
 clc;
 
-% map setting
+%% explanation
+% generates a clear map with a given size, and spawns a window for
+% drawing obstacles. When you are done press enter and the grid 
+% will be saved to the file "my_gridmap".
+
+%% map setting
 map_size = [40, 50];
 G = 1;
 start = [4, 4];
 goal = [36, 46];
 
-% obstacle
+% fence around grid
 fence = [1:map_size(1), ... 
         map_size(1):map_size(1):map_size(1) * map_size(2), ...
         1:map_size(1):(map_size(1) - 1) * map_size(2), ...
         map_size(1) * (map_size(2) - 1):map_size(1) * map_size(2)];
 obstacle = [fence];
 
-% create grid
-grid_map = generate_grid(map_size, obstacle);
+%% create grid or iterate on an old one
+%grid_map = generate_grid(map_size, obstacle);
+load("my_gridmap.mat");
 
+%% user input
 while (1)
     clf; hold on
     
@@ -43,6 +50,6 @@ while (1)
     end
 end
 
-% save and plot
+%% save and plot
 save my_gridmap grid_map
 plot_grid(grid_map);
