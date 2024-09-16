@@ -29,12 +29,12 @@ global_planner_name = "a_star";
 % global_planner_name = "voronoi_plan";
 
 local_planner_name = "pid_plan";
-% local_planner_name = "dwa_plan";
+%local_planner_name = "dwa_plan";
 
 %% Path planning (global)
 global_planner = str2func(global_planner_name);
 [path, global_flag, cost, expand] = global_planner(grid_map, start(:, 1:2), goal(:, 1:2));
-% path = round(path);
+%path = floor(path);
 
 %% trajectory planning (local)
 local_planner = str2func(local_planner_name);
@@ -86,8 +86,12 @@ hold on;
 plot(ppval(spline_x, t_smooth), ppval(spline_y, t_smooth), 'DisplayName', 'Interpolated Path');
 xlabel('x');
 ylabel('y');
-legend;
+legend('location','southeastoutside');
 title('Original Path and Spline Interpolation');
+
+% plot start/goal
+plot(sx, sy, '*', 'DisplayName', 'Start');
+plot(gx, gy, '*', 'DisplayName', 'Goal');
 
 % Place lengend for the obstacles
 plot(0, 0, 's', 'DisplayName', 'Obstacle', ...
