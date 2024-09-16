@@ -3,6 +3,11 @@ addpath("workspace/");
 addpath("utils/");
 addpath("local_planner/");
 addpath("global_planner/");
+addpath("utils/env/", "utils/data/map/", "utils/plot/", "utils/animation/");
+addpath("local_planner/");
+addpath("global_planner/graph_search/");
+addpath("global_planner/sample_search/");
+addpath(genpath("utils/"), genpath("global_planner/"));
 
 %% initialize map
 clear all;
